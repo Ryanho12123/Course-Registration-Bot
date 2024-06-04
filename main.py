@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 from getpass import getpass
 # from datetime import datetime
 # import pause
@@ -21,21 +21,21 @@ def WelcomeBanner():
 
 
 
-# def getDriver():
-#     print("\nInitializing/Checking webdriver....\n")
-#     # Initializes necessary Chrome driver for Selenium to use:
-#     global driver
-#     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#     chrome_options = Options()
-#     chrome_options.add_experimental_option("detach", True)
-#     driver.maximize_window
-#     driver.close()
+def getDriver():
+    print("\nInitializing/Checking webdriver....\n")
+    # Initializes necessary Chrome driver for Selenium to use:
+    global driver
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    chrome_options = Options()
+    chrome_options.add_experimental_option("detach", True)
+    driver.maximize_window
+    driver.close()
 
 def UTRegister():
-    # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    # chrome_options = Options()
-    # chrome_options.add_experimental_option("detach", True)
-    # driver.maximize_window
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    chrome_options = Options()
+    chrome_options.add_experimental_option("detach", True)
+    driver.maximize_window
 
     driver = webdriver.Chrome()
     
@@ -67,7 +67,7 @@ def UTRegister():
 
 def main():
     WelcomeBanner()
-    # getDriver()
+    getDriver()
     global courses, EID, uTPassword, semester, num_of_courses
 
     print("\nPlease enter the necessary information to register...\n")
