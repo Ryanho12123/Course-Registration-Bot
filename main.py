@@ -15,9 +15,16 @@ from getpass import getpass
 import time
 
 def WelcomeBanner():
-    print("==========================================================================================")
-    print("|                        Ryan Ho's Course Registration Bot                                 |")
-    print("==========================================================================================")
+    print("************************************************")
+    print("*                                              *")
+    print("*    ######################################    *")
+    print("*    #                                    #    *")
+    print("*    #  Ryan Ho's Course Registration Bot  #    *")
+    print("*    #                                    #    *")
+    print("*    ######################################    *")
+    print("*                                              *")
+    print("************************************************")
+
 
 
 
@@ -37,7 +44,7 @@ def UTRegister():
     chrome_options.add_experimental_option("detach", True)
     driver.maximize_window
 
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
     
     print("\nRegistering for courses...\n")
     # UT's Login Page
@@ -53,15 +60,18 @@ def UTRegister():
         EC.presence_of_element_located((By.XPATH, '//*[@id="regContent"]/div/form/input[5]'))
     )
 
-    semesterButton = driver.find_element(By.XPATH, '//*[@id="regContent"]/div/form/input[5]')
-    semesterButton.click()
+    if semester.lower() == "summer":
+        summerSemesterButton = driver.find_element(By.XPATH, '//*[@id="regContent"]/div/form/input[5]')
+        sumerSemesterButton.click()
+    else:
+        fallSemesterButton = driver.find_element(By.XPATH, '//*[@id="regContent"]/div/form/input[5]')
+        fallSemesterButton.click()
 
     for i in range (len(courses)):
         uniqueNumber = driver.find_element(By.XPATH, '//*[@id="s_unique_add"]')
         uniqueNumber.send_keys(courses[i] + Keys.ENTER)
     
     time.sleep(10)
-
     driver.quit()
 
 
@@ -76,7 +86,7 @@ def main():
     # Getting user-inputed data that will be inserted into the site pages:
     EID = input("What is your EID?: ").upper()[:9]
     uTPassword = getpass("What is your password?: ")
-    semester = input("What semester are you applying for? (EXACTLY AS STATED ON UIS): ")
+    semester = input("What semester are you applying for? (Ex: Summer, Fall, or Spring): ")
     num_of_courses = int(input("How many courses are you going to take?: "))
     print(f"You are taking {num_of_courses} courses")
     for idx in range(num_of_courses):
@@ -88,10 +98,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
 
 # registerButton = driver.find_element(By.XPATH, '//*[@id="primary"]/p[2]/a')
 # registerButton.click()
@@ -106,5 +112,4 @@ if __name__ == '__main__':
 # driver = webdriver.Chrome()
 # driver.get("https://google.com")
 
-# <input class="field input" id="username" name="j_username" type="text" value="" autocomplete="off" size="30" aria-required="true" aria-label="UT EID" autofocus="autofocus" placeholder="UT EID">
 
