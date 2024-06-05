@@ -63,6 +63,10 @@ def UTRegister():
         EC.presence_of_element_located((By.XPATH, '//*[@id="regContent"]/div/form/input[5]'))
     )
 
+    WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.XPATH, '//*[@id="regContent"]/div[2]/form/input[5]'))
+    )
+
     if semester.lower() == "summer":
         summerSemesterButton = driver.find_element(By.XPATH, '//*[@id="regContent"]/div/form/input[5]')
         sumerSemesterButton.click()
