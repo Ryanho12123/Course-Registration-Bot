@@ -18,7 +18,7 @@ If you do not have git installed, you can either download it from here: https://
 Or you can just click the green Code button, Download ZIP, and then extract the folder.
 
 4). In a terminal and while in the directory of this folder, type: <br>
-`pip install -r requirements.txt` and then after run `pip install webdriver-manager`
+`pip install -r requirements.txt` or `pip3 install -r requirements.txt` and then after run `pip install webdriver-manager` or `pip3 install webdriver-manager`
 
 5). Run the code by typing: <br />
 `python main.py` or `python3 main.py`
