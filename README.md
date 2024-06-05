@@ -5,7 +5,7 @@ portal using Python and the Selenium web-automation framework.
 ## Instructions
 1). Make sure you have **Python** and **pip** installed. You can grab the latest version from
 their official download page: <br />
-https://www.python.org/downloads/
+https://www.python.org/downloads/ <br />
 https://pip.pypa.io/en/stable/installation/
 
 2). For this program, you will need to use the **Google Chrome** browser. If you do not already have that installed, navigate to their official page to download the latest version (for Windows, macOS, or Linux): <br />
