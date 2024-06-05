@@ -1,11 +1,12 @@
 import datetime
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from getpass import getpass
 # from datetime import datetime
@@ -26,21 +27,21 @@ def WelcomeBanner():
 
 
 
-# def getDriver():
-#     print("\nInitializing/Checking webdriver....\n")
-#     # Initializes necessary Chrome driver for Selenium to use:
-#     global driver
-#     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#     chrome_options = Options()
-#     chrome_options.add_experimental_option("detach", True)
-#     driver.maximize_window
-#     driver.close()
+def getDriver():
+    print("\nInitializing/Checking webdriver....\n")
+    # Initializes necessary Chrome driver for Selenium to use:
+    global driver
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    chrome_options = Options()
+    chrome_options.add_experimental_option("detach", True)
+    driver.maximize_window
+    driver.close()
 
 def UTRegister():
-    # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    # chrome_options = Options()
-    # chrome_options.add_experimental_option("detach", True)
-    # driver.maximize_window
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    chrome_options = Options()
+    chrome_options.add_experimental_option("detach", True)
+    driver.maximize_window
 
     # options = Options
 
@@ -49,8 +50,8 @@ def UTRegister():
     # driver = webdriver.Chrome()
 
     loginURL = "https://utdirect.utexas.edu/registration/chooseSemester.WBX"
-    service = Service(executable_path="/Users/ryanho/InspireLLC/CourseSnip/Course-Registration-Bot/chromedriver")
-    driver = webdriver.Chrome(service=service)
+    # service = Service(executable_path="/Users/ryanho/InspireLLC/CourseSnip/Course-Registration-Bot/chromedriver")
+    # driver = webdriver.Chrome(service=service)
     driver.get(loginURL)
 
     utUsername = driver.find_element(By.ID, "username")
@@ -66,7 +67,7 @@ def UTRegister():
         summerSemesterButton = driver.find_element(By.XPATH, '//*[@id="regContent"]/div/form/input[5]')
         sumerSemesterButton.click()
     else:
-        fallSemesterButton = driver.find_element(By.XPATH, '//*[@id="regContent"]/div/form/input[5]')
+        fallSemesterButton = driver.find_element(By.XPATH, '//*[@id="regContent"]/div[2]/form/input[5]')
         fallSemesterButton.click()
 
     for i in range (len(courses)):
@@ -79,7 +80,7 @@ def UTRegister():
 
 def main():
     WelcomeBanner()
-    # getDriver()
+    getDriver()
     global courses, EID, uTPassword, semester, num_of_courses
 
     print("\nPlease enter the necessary information to register...\n")
@@ -95,9 +96,6 @@ def main():
         CRN = input('Enter the Unique number of each course: ')
         courses.append(CRN)
     print("\nYou are taking these courses\n" + str(courses) + "\n")
-
-    filePath = input("Enter the file path")
-
     UTRegister()
 
 if __name__ == '__main__':
